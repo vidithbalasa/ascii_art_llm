@@ -6,17 +6,6 @@ from functools import wraps
 from einops import rearrange, repeat
 from timm.models.layers import DropPath
 
-# check for GPU
-if torch.backends.mps.is_available():
-    device = torch.device("mps")
-    print("Using apple metal GPU")
-elif torch.cuda.is_available():
-    device = torch.device("cuda")
-    print("Using nvidia GPU")
-else:
-    device = torch.device("cpu")
-    print("GPU not available, using CPU")
-
 def cache_fn(f):
     cache = None
     @wraps(f)
